@@ -11,8 +11,8 @@ set -Eeuo pipefail
 #######################################
 
 ESP_DEV="/dev/sda1"
-SWAP_DEV="/dev/sda2"
-ROOT_DEV="/dev/sda3"
+SWAP_DEV="/dev/sda3"
+ROOT_DEV="/dev/sda2"
 
 ESP_LABEL="BOOT"
 ROOT_LABEL="ROOT"
@@ -26,7 +26,6 @@ NEW_USER="lubi"
 NEW_USER_PASS="NewPass"
 ROOT_PASS="NewPass"
 
-KERNEL_PKG="linux"
 INIT_SYS="dinit"
 USE_LIMINE="yes"
 
@@ -109,7 +108,7 @@ run mount "$ESP_DEV" /mnt/boot/EFI
 #######################################
 
 msg "Instalando base Artix..."
-BASE_PKGS=(base "$KERNEL_PKG" linux-firmware btrfs-progs nano iproute2 iputils sudo)
+BASE_PKGS=(linux linux-headers linux-firmware bash coreutils binutils util-linux findutils grep sed gawk diffutils file less filesystem procps-ng shadow kbd e2fsprogs gzip xz tar gcc gcc-libs musl btrfs-progs nano iproute2 iputils sudo licenses which gettext gnupg git wget)
 INIT_PKGS=(dinit)
 BOOT_PKGS=(limine)
 SNAP_PKGS=(snapper cronie)
@@ -288,8 +287,8 @@ fi
 
 # --- Limine (UEFI-only) ---
 msg "Limine (UEFI-only)..."
-mkdir -p /boot/EFI/BOOT
-cat > /boot/EFI/BOOT/limine.conf <<'EOF'
+mkdir -p /boot/efi/EFI/BOOT
+cat > /boot/efi/EFI/BOOT/limine.conf <<'EOF'
 TIMEOUT=5
 DEFAULT_ENTRY=Artix Lubi
 
@@ -301,10 +300,7 @@ MODULE_PATH=boot:///initramfs-linux.img
 EOF
 
 if [ -f /usr/share/limine/BOOTX64.EFI ]; then
-  cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
-fi
-if [ -f /usr/share/limine/BOOTIA32.EFI ]; then
-  cp /usr/share/limine/BOOTIA32.EFI /boot/EFI/BOOT/BOOTIA32.EFI
+  cp /usr/share/limine/BOOTX64.EFI /boot/efi/EFI/BOOT/BOOTX64.EFI
 fi
 
 msg "Chroot finalizado."
