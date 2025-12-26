@@ -110,11 +110,11 @@ run mount "$ESP_DEV" /mnt/boot/EFI
 
 msg "Instalando base Artix..."
 BASE_PKGS=(base "$KERNEL_PKG" linux-firmware btrfs-progs nano iproute2 iputils sudo)
-INIT_PKGS=(dinit dinit-chroot)
+INIT_PKGS=(dinit)
 BOOT_PKGS=(limine)
 SNAP_PKGS=(snapper cronie)
 CORE_SERVICES=(syslog-ng chrony seatd pipewire wireplumber nftables acpid dbus cups bluez networkmanager)
-DINIT_SCRIPTS=(syslog-ng-dinit chrony-dinit seatd-dinit pipewire-dinit wireplumber-dinit nftables-dinit acpid-dinit dbus-dinit cups-dinit bluez-dinit networkmanager-dinit cronie-dinit snapper-dinit)
+DINIT_SCRIPTS=(syslog-ng-dinit chrony-dinit seatd-dinit pipewire-dinit wireplumber-dinit nftables-dinit acpid-dinit dbus-dinit cups-dinit bluez-dinit networkmanager-dinit cronie-dinit)
 
 run basestrap /mnt "${BASE_PKGS[@]}" "${INIT_PKGS[@]}" "${BOOT_PKGS[@]}" "${SNAP_PKGS[@]}" "${CORE_SERVICES[@]}" "${DINIT_SCRIPTS[@]}"
 
