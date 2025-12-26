@@ -55,7 +55,7 @@ confirm_device() {
 #######################################
 
 msg "Verificando comandos requeridos..."
-require_cmd lsblk mkfs.btrfs mount umount btrfs blkid swapon mkswap basestrap artix-chroot genfstab sed awk grep useradd passwd ln rsync
+require_cmd lsblk mkfs.btrfs mount umount btrfs blkid swapon mkswap basestrap artix-chroot fstabgen sed awk grep useradd passwd ln rsync
 
 msg "Confirmando dispositivos..."
 confirm_device
@@ -119,7 +119,7 @@ DINIT_SCRIPTS=(syslog-ng-dinit chrony-dinit seatd-dinit pipewire-dinit wireplumb
 run basestrap /mnt "${BASE_PKGS[@]}" "${INIT_PKGS[@]}" "${BOOT_PKGS[@]}" "${SNAP_PKGS[@]}" "${CORE_SERVICES[@]}" "${DINIT_SCRIPTS[@]}"
 
 msg "Generando fstab..."
-run genfstab -U /mnt >> /mnt/etc/fstab
+run fstabgen -U /mnt >> /mnt/etc/fstab
 
 #######################################
 # CONFIGURACIÓN EN CHROOT
