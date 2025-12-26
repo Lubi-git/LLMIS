@@ -100,8 +100,8 @@ run mount -o "$BTRFS_OPTS",subvol=@tmp       "$ROOT_DEV" /mnt/tmp
 run mount -o "$BTRFS_OPTS",subvol=@system    "$ROOT_DEV" /mnt/usr
 
 msg "Montando ESP en /boot/EFI..."
-run mkdir -p /mnt/boot/EFI
-run mount "$ESP_DEV" /mnt/boot/EFI
+run mkdir -p /mnt/boot/efi/EFI
+run mount "$ESP_DEV" /mnt/boot/efi/EFI
 
 #######################################
 # BASE DE SISTEMA: ARTIX + DINIT
