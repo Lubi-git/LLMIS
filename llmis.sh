@@ -100,8 +100,8 @@ run mount -o "$BTRFS_OPTS",subvol=@tmp       "$ROOT_DEV" /mnt/tmp
 run mount -o "$BTRFS_OPTS",subvol=@system    "$ROOT_DEV" /mnt/usr
 
 msg "Montando ESP en /boot/EFI..."
-run mkdir -p /mnt/boot/efi/EFI
-run mount "$ESP_DEV" /mnt/boot/efi/EFI
+run mkdir -p /mnt/boot
+run mount "$ESP_DEV" /mnt/boot
 
 #######################################
 # BASE DE SISTEMA: ARTIX + DINIT
@@ -287,8 +287,8 @@ fi
 
 # --- Limine (UEFI-only) ---
 msg "Limine (UEFI-only)..."
-mkdir -p /boot/efi/EFI/BOOT
-cat > /boot/efi/EFI/BOOT/limine.conf <<'EOF'
+mkdir -p /boot/EFI/BOOT
+cat > /boot/EFI/BOOT/limine.conf <<'EOF'
 TIMEOUT=5
 DEFAULT_ENTRY=Artix Lubi
 
@@ -300,7 +300,7 @@ MODULE_PATH=boot:///initramfs-linux.img
 EOF
 
 if [ -f /usr/share/limine/BOOTX64.EFI ]; then
-  cp /usr/share/limine/BOOTX64.EFI /boot/efi/EFI/BOOT/BOOTX64.EFI
+  cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
 fi
 
 msg "Chroot finalizado."
