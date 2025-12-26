@@ -112,7 +112,7 @@ BASE_PKGS=(linux linux-headers linux-firmware bash coreutils binutils util-linux
 INIT_PKGS=(dinit)
 BOOT_PKGS=(limine)
 SNAP_PKGS=(snapper cronie)
-CORE_SERVICES=(syslog-ng chrony seatd pipewire wireplumber nftables acpid dbus cups bluez networkmanager)
+CORE_SERVICES=(syslog-ng chrony seatd pipewire wireplumber nftables acpid dbus cups bluez iwd networkmanager)
 DINIT_SCRIPTS=(syslog-ng-dinit chrony-dinit seatd-dinit pipewire-dinit wireplumber-dinit nftables-dinit acpid-dinit dbus-dinit cups-dinit bluez-dinit networkmanager-dinit cronie-dinit)
 
 run basestrap /mnt "${BASE_PKGS[@]}" "${INIT_PKGS[@]}" "${BOOT_PKGS[@]}" "${SNAP_PKGS[@]}" "${CORE_SERVICES[@]}" "${DINIT_SCRIPTS[@]}"
