@@ -55,7 +55,7 @@ confirm_device() {
 #######################################
 
 msg "Verificando comandos requeridos..."
-require_cmd lsblk mkfs.btrfs mount umount btrfs blkid swapon mkswap pacstrap artix-chroot genfstab sed awk grep useradd passwd ln rsync
+require_cmd lsblk mkfs.btrfs mount umount btrfs blkid swapon mkswap basestrap artix-chroot genfstab sed awk grep useradd passwd ln rsync
 
 msg "Confirmando dispositivos..."
 confirm_device
@@ -116,7 +116,7 @@ SNAP_PKGS=(snapper cronie)
 CORE_SERVICES=(syslog-ng chrony seatd pipewire wireplumber nftables acpid dbus cups bluez networkmanager)
 DINIT_SCRIPTS=(syslog-ng-dinit chrony-dinit seatd-dinit pipewire-dinit wireplumber-dinit nftables-dinit acpid-dinit dbus-dinit cups-dinit bluez-dinit networkmanager-dinit cronie-dinit snapper-dinit)
 
-run pacstrap /mnt "${BASE_PKGS[@]}" "${INIT_PKGS[@]}" "${BOOT_PKGS[@]}" "${SNAP_PKGS[@]}" "${CORE_SERVICES[@]}" "${DINIT_SCRIPTS[@]}"
+run basestrap /mnt "${BASE_PKGS[@]}" "${INIT_PKGS[@]}" "${BOOT_PKGS[@]}" "${SNAP_PKGS[@]}" "${CORE_SERVICES[@]}" "${DINIT_SCRIPTS[@]}"
 
 msg "Generando fstab..."
 run genfstab -U /mnt >> /mnt/etc/fstab
